@@ -16,7 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.http import HttpResponse
+from home import views as home_views
+from blog import views as blog_views
+
+# O Django trabalha usando o MVT / Model-View-Template
+
+def home(request):
+    print("Minha home")
+    return HttpResponse("Minha home")
+
+def my_view(request):
+    print('Consigo escrever no terminal')
+    return HttpResponse("Menssagem que vai para a página carregada")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # chamando uma página principal
+    path('', home_views.home),
+    path('blog/', blog_views.blog),
+    path('admin/', admin.site.urls)
+
 ]
